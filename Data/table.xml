@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Table>
+	<Row>
+		<StudentName>
+            Троценко Антон
+        </StudentName>
+		<Faculty>
+            ФКНК
+        </Faculty>
+		<FieldOfStudy>
+            122 - комп'ютерні науки
+        </FieldOfStudy>
+		<Group>
+            K-27
+        </Group>
+		<EnteranceDate>
+            01.09.2021
+        </EnteranceDate>
+	</Row>
+	<Row>
+		<StudentName>
+            Тарас Шевченко
+        </StudentName>
+		<Faculty>
+            ФКНК
+        </Faculty>
+		<FieldOfStudy>
+            122 - комп'ютерні науки
+        </FieldOfStudy>
+		<Group>
+            K-17
+        </Group>
+		<EnteranceDate>
+            01.09.2022
+        </EnteranceDate>
+	</Row>
+	<Row>
+		<StudentName>
+            Андрій Анікушин
+        </StudentName>
+		<Faculty>
+            ФКНК
+        </Faculty>
+		<FieldOfStudy>
+            122
+        </FieldOfStudy>
+		<Group>
+            K-27
+        </Group>
+		<EnteranceDate>
+            01.09.2021
+        </EnteranceDate>
+	</Row>
+	<Row>
+		<StudentName>
+            Анатолій Остапенко
+        </StudentName>
+		<Faculty>
+            ФКНК
+        </Faculty>
+		<FieldOfStudy>
+            121
+        </FieldOfStudy>
+		<Group>
+            ПІ-21
+        </Group>
+		<EnteranceDate>
+            01.09.2021
+        </EnteranceDate>
+	</Row>
+	<Row>
+		<StudentName>
+            Олег Олеженко
+        </StudentName>
+		<Faculty>
+            ФКНК
+        </Faculty>
+		<FieldOfStudy>
+            121 - програмна інженерія
+        </FieldOfStudy>
+		<Group>
+            ТК-32
+        </Group>
+		<EnteranceDate>
+            01.09.2020
+        </EnteranceDate>
+	</Row>
+	<Row>
+		<StudentName>
+            Оксана Доженко
+        </StudentName>
+		<Faculty>
+            ФКНК
+        </Faculty>
+		<FieldOfStudy>
+            113
+        </FieldOfStudy>
+		<Group>
+            Вигадана група
+        </Group>
+		<EnteranceDate>
+            01.09.2019
+        </EnteranceDate>
+	</Row>
+	<Row>
+		<StudentName>
+            Тарас Шевченко
+        </StudentName>
+		<Faculty>
+            ФІТ
+        </Faculty>
+		<FieldOfStudy>
+            122 - комп'ютерні науки
+        </FieldOfStudy>
+		<Group>
+            12345
+        </Group>
+		<EnteranceDate>
+            01.09.2021
+        </EnteranceDate>
+	</Row>
+	<Row>
+		<StudentName>
+            Людина1
+        </StudentName>
+		<Faculty>
+            ІП
+        </Faculty>
+		<FieldOfStudy>
+            Право
+        </FieldOfStudy>
+		<Group>
+            23
+        </Group>
+		<EnteranceDate>
+            01.09.2021
+        </EnteranceDate>
+	</Row>
+	<Row>
+		<StudentName>
+            Олег Колесниченко
+        </StudentName>
+		<Faculty>
+            ІП
+        </Faculty>
+		<FieldOfStudy>
+            право
+        </FieldOfStudy>
+		<Group>
+            45
+        </Group>
+		<EnteranceDate>
+            01.09.2019
+        </EnteranceDate>
+	</Row>
+	<Row>
+		<StudentName>
+            Людина2
+        </StudentName>
+		<Faculty>
+            ФКНК
+        </Faculty>
+		<FieldOfStudy>
+            Комп'ютерні Науки
+        </FieldOfStudy>
+		<Group>
+            МІ-42
+        </Group>
+		<EnteranceDate>
+            01.09.2019
+        </EnteranceDate>
+	</Row>
+</Table>
