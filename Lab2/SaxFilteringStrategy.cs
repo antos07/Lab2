@@ -4,124 +4,165 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace Lab2
 {
+    public class SaxParser
+    {
+        private XmlReader _reader;
+        private List<DataRow> _rows = new();
+        private Stack<string> _elements = new();
+        private bool _handlingTable = false, _handlingRow = false;
+        private HashSet<string> _allowedElements = new() { "StudentName", "Faculty",
+            "FieldOfStudy", "Group", "EnteranceDate" };
+        private string? _studentName = null;
+        private string? _faculty = null;
+        private string? _fieldOfStudy = null;
+        private string? _group = null;
+        private string? _enteranceDate = null;
+
+        public SaxParser(string filename)
+        {
+            _reader = XmlReader.Create(filename);
+        }
+
+        public IEnumerable<DataRow> ParseRows()
+        {
+            while (_reader.Read())
+            {
+                switch (_reader.NodeType)
+                {
+                    case XmlNodeType.Element:
+                        {
+                            HandleElement();
+                            break;
+                        }
+                    case XmlNodeType.Text:
+                        {
+                            HandleText();
+                            break;
+                        }
+                    case XmlNodeType.EndElement:
+                        {
+                            HandleEndElement();
+                            break;
+                        }
+                }
+            }
+            return _rows;
+        }
+
+        private void HandleElement()
+        {
+            _elements.Push(_reader.Name);
+            switch (_reader.Name)
+            {
+                case "Table":
+                    {
+                        if (_handlingTable)
+                            throw new DocumentValidationException("Unexpected token");
+                        _handlingTable = true;
+                        break;
+                    }
+                case "Row":
+                    {
+                        if (_handlingRow || !_handlingTable)
+                        {
+                            throw new DocumentValidationException("Unexpected token");
+                        }
+                        _handlingRow = true;
+                        break;
+                    }
+                default:
+                    {
+                        if (!_handlingRow || !_allowedElements.Contains(_reader.Name))
+                            throw new DocumentValidationException("Unexpected token");
+                        break;
+                    }
+            }
+        }
+
+        private void HandleText()
+        {
+            string text = _reader.Value.Trim();
+            switch (_elements.Peek())
+            {
+                case "StudentName":
+                    {
+                        if (_studentName != null)
+                            throw new DocumentValidationException("Unexpected token");
+                        _studentName = text;
+                        break;
+                    }
+                case "Faculty":
+                    {
+                        if (_faculty != null)
+                            throw new DocumentValidationException("Unexpected token");
+                        _faculty = text;
+                        break;
+                    }
+                case "FieldOfStudy":
+                    {
+                        if (_fieldOfStudy != null)
+                            throw new DocumentValidationException("Unexpected token");
+                        _fieldOfStudy = text;
+                        break;
+                    }
+                case "Group":
+                    {
+                        if (_group != null)
+                            throw new DocumentValidationException("Unexpected token");
+                        _group = text;
+                        break;
+                    }
+                case "EnteranceDate":
+                    {
+                        if (_enteranceDate != null)
+                            throw new DocumentValidationException("Unexpected token");
+                        _enteranceDate = text;
+                        break;
+                    }
+                default:
+                    throw new DocumentValidationException("Unexpected token");
+            }
+        }
+
+        private void HandleEndElement()
+        {
+            _elements.Pop();
+            if (_reader.Name == "Row")
+            {
+                if (_studentName == null || _faculty == null
+                    || _enteranceDate == null || _group == null 
+                    || _fieldOfStudy == null)
+                {
+                    throw new DocumentValidationException("Missing data");
+                }
+                var dataRow = new DataRow(_studentName, _faculty, _fieldOfStudy, _group, _enteranceDate);
+                _rows.Add(dataRow);
+                _studentName = null;
+                _faculty = null;
+                _enteranceDate = null;
+                _group = null;
+                _fieldOfStudy = null;
+                _handlingRow = false;
+            }
+        }
+    }
+
     public class SaxFilteringStrategy : IFilteringStrategy
     {
 
         public IEnumerable<DataRow> Filter(string filename, string words, HashSet<string> columns)
         {
-            var reader = XmlReader.Create(filename);
+            var parser = new SaxParser(filename);
+            IEnumerable<DataRow> rows = parser.ParseRows();
 
-            string? studentName = null, faculty = null, fieldOfStudy = null, group = null, enteranceDate = null;
-            var allowedElements = new HashSet<string> { "StudentName", "Faculty", "FieldOfStudy", "Group", "EnteranceDate" };
-            Stack<string> elements = new Stack<string>();
-
-            bool handlingRow = false, handlingTable = false;
-            while (reader.Read())
+            foreach (DataRow row in rows)
             {
-                switch (reader.NodeType)
-                {
-                    case XmlNodeType.Element:
-                        {
-                            elements.Push(reader.Name);
-                            switch (reader.Name)
-                            {
-                                case "Table":
-                                    {
-                                        if (handlingTable)
-                                            throw new DocumentValidationException("Unexpected token");
-                                        handlingTable = true;
-                                        break;
-                                    }
-                                case "Row":
-                                    {
-                                        if (handlingRow || !handlingTable)
-                                        {
-                                            throw new DocumentValidationException("Unexpected token");
-                                        }
-                                        handlingRow = true;
-                                        break;
-                                    }
-                                default:
-                                    {
-                                        if (!handlingRow || !allowedElements.Contains(reader.Name))
-                                            throw new DocumentValidationException("Unexpected token");
-                                        break;
-                                    }
-                            }
-                            break;
-                        }
-                    case XmlNodeType.Text:
-                        {
-                            switch (elements.Peek())
-                            {
-                                case "StudentName":
-                                    {
-                                        if (studentName != null)
-                                            throw new DocumentValidationException("Unexpected token");
-                                        studentName = reader.Value.Trim();
-                                        break;
-                                    }
-                                case "Faculty":
-                                    {
-                                        if (faculty != null)
-                                            throw new DocumentValidationException("Unexpected token");
-                                        faculty = reader.Value.Trim();
-                                        break;
-                                    }
-                                case "FieldOfStudy":
-                                    {
-                                        if (fieldOfStudy != null)
-                                            throw new DocumentValidationException("Unexpected token");
-                                        fieldOfStudy = reader.Value.Trim();
-                                        break;
-                                    }
-                                case "Group":
-                                    {
-                                        if (group != null)
-                                            throw new DocumentValidationException("Unexpected token");
-                                        group = reader.Value.Trim();
-                                        break;
-                                    }
-                                case "EnteranceDate":
-                                    {
-                                        if (enteranceDate != null)
-                                            throw new DocumentValidationException("Unexpected token");
-                                        enteranceDate = reader.Value.Trim();
-                                        break;
-                                    }
-                                default:
-                                    throw new DocumentValidationException("Unexpected token");
-                            }
-                            break;
-                        }
-                    case XmlNodeType.EndElement:
-                        {
-                            elements.Pop();
-                            if (reader.Name == "Row")
-                            {
-                                if (studentName == null || faculty == null
-                                    || enteranceDate == null || group == null || fieldOfStudy == null)
-                                {
-                                    throw new DocumentValidationException("Missing data");
-                                }
-                                var dataRow = new DataRow(studentName, faculty, fieldOfStudy, group, enteranceDate);
-                                if (FullfielsQuery(dataRow, words, columns))
-                                    yield return dataRow;
-                                studentName = null;
-                                faculty = null;
-                                enteranceDate = null;
-                                group = null;
-                                fieldOfStudy = null;
-                                handlingRow = false;
-                            }
-                            break;
-                        }
-                    default:
-                        break;
-                }
+                if (FullfielsQuery(row, words, columns))
+                    yield return row;
             }
         }
 
