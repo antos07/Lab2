@@ -45,15 +45,15 @@
             this.searchLabel = new System.Windows.Forms.Label();
             this.searchQueryTextBox = new System.Windows.Forms.TextBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToHtmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.studentNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.facultyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fieldOfStudyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.enteringDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportToHtmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
             this.mainSplitContainer.Panel2.SuspendLayout();
@@ -65,7 +65,7 @@
             // mainSplitContainer
             // 
             this.mainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainSplitContainer.Location = new System.Drawing.Point(0, 52);
+            this.mainSplitContainer.Location = new System.Drawing.Point(0, 49);
             this.mainSplitContainer.Name = "mainSplitContainer";
             // 
             // mainSplitContainer.Panel1
@@ -91,7 +91,7 @@
             // 
             this.mainSplitContainer.Panel2.Controls.Add(this.dataGridView);
             this.mainSplitContainer.Panel2MinSize = 1000;
-            this.mainSplitContainer.Size = new System.Drawing.Size(2050, 1030);
+            this.mainSplitContainer.Size = new System.Drawing.Size(2050, 1033);
             this.mainSplitContainer.SplitterDistance = 750;
             this.mainSplitContainer.TabIndex = 0;
             // 
@@ -289,43 +289,8 @@
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowHeadersWidth = 102;
             this.dataGridView.RowTemplate.Height = 49;
-            this.dataGridView.Size = new System.Drawing.Size(1296, 1030);
+            this.dataGridView.Size = new System.Drawing.Size(1296, 1033);
             this.dataGridView.TabIndex = 0;
-            // 
-            // studentNameColumn
-            // 
-            this.studentNameColumn.HeaderText = "ПІБ";
-            this.studentNameColumn.MinimumWidth = 12;
-            this.studentNameColumn.Name = "studentNameColumn";
-            this.studentNameColumn.ReadOnly = true;
-            // 
-            // facultyColumn
-            // 
-            this.facultyColumn.HeaderText = "Структурний підрозділ";
-            this.facultyColumn.MinimumWidth = 12;
-            this.facultyColumn.Name = "facultyColumn";
-            this.facultyColumn.ReadOnly = true;
-            // 
-            // fieldOfStudyColumn
-            // 
-            this.fieldOfStudyColumn.HeaderText = "Спеціальність";
-            this.fieldOfStudyColumn.MinimumWidth = 12;
-            this.fieldOfStudyColumn.Name = "fieldOfStudyColumn";
-            this.fieldOfStudyColumn.ReadOnly = true;
-            // 
-            // groupColumn
-            // 
-            this.groupColumn.HeaderText = "Група";
-            this.groupColumn.MinimumWidth = 12;
-            this.groupColumn.Name = "groupColumn";
-            this.groupColumn.ReadOnly = true;
-            // 
-            // enteringDateColumn
-            // 
-            this.enteringDateColumn.HeaderText = "Дата вступу";
-            this.enteringDateColumn.MinimumWidth = 12;
-            this.enteringDateColumn.Name = "enteringDateColumn";
-            this.enteringDateColumn.ReadOnly = true;
             // 
             // menuStrip
             // 
@@ -334,7 +299,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(2050, 52);
+            this.menuStrip.Size = new System.Drawing.Size(2050, 49);
             this.menuStrip.TabIndex = 1;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -344,7 +309,7 @@
             this.openXmlToolStripMenuItem,
             this.exportToHtmlToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(112, 48);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(112, 45);
             this.fileToolStripMenuItem.Text = "Файл";
             // 
             // openXmlToolStripMenuItem
@@ -360,6 +325,46 @@
             this.exportToHtmlToolStripMenuItem.Size = new System.Drawing.Size(478, 54);
             this.exportToHtmlToolStripMenuItem.Text = "Експортувати в HTML";
             this.exportToHtmlToolStripMenuItem.Click += new System.EventHandler(this.exportToHtmlToolStripMenuItem_Click);
+            // 
+            // studentNameColumn
+            // 
+            this.studentNameColumn.HeaderText = "ПІБ";
+            this.studentNameColumn.MinimumWidth = 12;
+            this.studentNameColumn.Name = "studentNameColumn";
+            this.studentNameColumn.ReadOnly = true;
+            this.studentNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // facultyColumn
+            // 
+            this.facultyColumn.HeaderText = "Структурний підрозділ";
+            this.facultyColumn.MinimumWidth = 12;
+            this.facultyColumn.Name = "facultyColumn";
+            this.facultyColumn.ReadOnly = true;
+            this.facultyColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // fieldOfStudyColumn
+            // 
+            this.fieldOfStudyColumn.HeaderText = "Спеціальність";
+            this.fieldOfStudyColumn.MinimumWidth = 12;
+            this.fieldOfStudyColumn.Name = "fieldOfStudyColumn";
+            this.fieldOfStudyColumn.ReadOnly = true;
+            this.fieldOfStudyColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // groupColumn
+            // 
+            this.groupColumn.HeaderText = "Група";
+            this.groupColumn.MinimumWidth = 12;
+            this.groupColumn.Name = "groupColumn";
+            this.groupColumn.ReadOnly = true;
+            this.groupColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // enteringDateColumn
+            // 
+            this.enteringDateColumn.HeaderText = "Дата вступу";
+            this.enteringDateColumn.MinimumWidth = 12;
+            this.enteringDateColumn.Name = "enteringDateColumn";
+            this.enteringDateColumn.ReadOnly = true;
+            this.enteringDateColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // MainFrom
             // 
@@ -389,11 +394,6 @@
 
         private SplitContainer mainSplitContainer;
         private DataGridView dataGridView;
-        private DataGridViewTextBoxColumn studentNameColumn;
-        private DataGridViewTextBoxColumn facultyColumn;
-        private DataGridViewTextBoxColumn fieldOfStudyColumn;
-        private DataGridViewTextBoxColumn groupColumn;
-        private DataGridViewTextBoxColumn enteringDateColumn;
         private TextBox searchQueryTextBox;
         private Label searchLabel;
         private Label searchQueryLabel;
@@ -413,5 +413,10 @@
         private ToolStripMenuItem openXmlToolStripMenuItem;
         private ToolStripMenuItem exportToHtmlToolStripMenuItem;
         private Button removeFiltersButton;
+        private DataGridViewTextBoxColumn studentNameColumn;
+        private DataGridViewTextBoxColumn facultyColumn;
+        private DataGridViewTextBoxColumn fieldOfStudyColumn;
+        private DataGridViewTextBoxColumn groupColumn;
+        private DataGridViewTextBoxColumn enteringDateColumn;
     }
 }

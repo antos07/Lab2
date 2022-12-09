@@ -17,7 +17,7 @@ namespace Lab2
             XslCompiledTransform xslt = LoadXslCompiledTranform();
 
             XmlDocument xmlRepresentation = GetXmlRepresentation();
-            var writer = XmlWriter.Create(filename);
+            using var writer = XmlWriter.Create(filename);
 
             xslt.Transform(xmlRepresentation, null, writer, null);
         }
